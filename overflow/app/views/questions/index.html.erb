@@ -1,0 +1,17 @@
+<%= link_to 'Create Question', new_question_path %>
+
+<h1>Cookie Overflow</h1>
+<h2>When Lisa spoils you too much</h2>
+
+<table>
+  <tr>
+    <th>Title</th>
+
+  </tr>
+
+  <% @questions.each do |question| %>
+    <tr>
+      <td><%= link_to "#{question.title}", question_path(question) %></td>
+    </tr>
+  <% end %>
+</table>
