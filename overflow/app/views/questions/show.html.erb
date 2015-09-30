@@ -1,8 +1,15 @@
 <%= link_to "All Questions", questions_path %>
 
 <h2><%= @question.title %></h2>
-<p> asked by: <%= @question.user %> </p>
+<p> asked by: <%= link_to "#{@question.user.username}", user_path(@question.user) %> </p>
 
 <p>
   <%= @question.description %>
 </p>
+
+<% if current_user.id == @question.user.id  %>
+  <%= link_to 'Delete', question_path(@question),
+       method: :delete,
+       data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_question_path(@question) %>
+<% end %>

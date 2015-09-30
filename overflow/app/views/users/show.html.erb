@@ -1,8 +1,24 @@
 <%= link_to 'Homepage', welcome_index_path %>
 
-<p><%= @user.username %></p>
+<p>Welcome to <%= @user.username %>'s Page</p>
 
-<td><%= link_to 'Edit', edit_user_path(@user) %></td>
+<% if current_user.id == @user.id %>
+  <td><%= link_to 'Edit Your Profile', edit_user_path(@user) %></td>
+<% end %>
 
 <h3>Questions</h3>
+
+  <ul>
+    <% @user.questions.each do |question| %>
+      <li>
+        <%= link_to "#{question.title}", question_path(question) %><br>
+        <% if current_user.id == question.user.id  %>
+          <%= link_to 'Delete', question_path(question),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_question_path(question) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 <h3>Answers</h3>
