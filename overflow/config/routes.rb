@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :questions do
-    resources :answers
+    resources :answers, only: [:new, :create, :destroy]
   end
 
   # You can have the root of your site routed with "root"

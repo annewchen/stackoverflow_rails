@@ -1,0 +1,9 @@
+<%= form_for :answer, url: question_answers_path, method: :post do |f| %>
+  <p>
+    <%= f.label :answer %>
+    <%= f.text_area :description, placeholder: "Your answer here" %>
+  </p>
+  <p>
+    <%= f.submit :respond %>
+  </p>
+<% end %>

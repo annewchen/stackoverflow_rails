@@ -1,6 +1,4 @@
-<%= link_to 'Homepage', welcome_index_path %>
-
-<p>Welcome to <%= @user.username %>'s Page</p>
+<h2>Welcome to <%= @user.username %>'s Page</h2>
 
 <% if current_user.id == @user.id %>
   <td><%= link_to 'Edit Your Profile', edit_user_path(@user) %></td>
@@ -21,4 +19,12 @@
       </li>
     <% end %>
   </ul>
+
 <h3>Answers</h3>
+  <ul>
+    <% @user.answers.each do |answer| %>
+      <li>
+        <%= link_to "RE: #{answer.question.title}", question_path(answer. question) %><br>
+      </li>
+    <% end %>
+  </ul>
