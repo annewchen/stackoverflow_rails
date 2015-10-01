@@ -7,7 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <p class="navbar-text pull-right">
+    <%= link_to "Homepage", questions_path %>|
+    <% if user_signed_in? %>
+      <%= link_to 'Profile', user_path(current_user.id), :class => 'navbar-link' %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>|
+       Logged in as <strong><%= current_user.email %></strong>.<br>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+    <% end %>
+  </p>
 
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= link_to 'Create Question', new_question_path %>
+  <% end %>
 <%= yield %>
 
 </body>
